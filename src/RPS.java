@@ -112,7 +112,7 @@ public class RPS extends BasicGameState {
 			else if(Model.getEndValue() == 0)
 				g.drawImage(pTie, 0, 780);
 			else
-				System.out.println("Neither player won, nor tied. It's something weird.");
+				//System.out.println("Neither player won, nor tied. It's something weird.");
 			
 			
 			if(time >= 8000) {
