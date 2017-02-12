@@ -154,9 +154,9 @@ public class RPS extends BasicGameState {
 		ControllerListener.played = false;
 		ControllerListener.ifGameOver = false;
 		doThis = true;
-		time = 0;
-		p1 = null;
-		p2 = null;
+		//time = 0;
+		//p1 = null;
+		//p2 = null;
 		
 		
 	}

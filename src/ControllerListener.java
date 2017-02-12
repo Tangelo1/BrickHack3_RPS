@@ -25,13 +25,13 @@ public class ControllerListener extends Listener {
 	        
 	        	Hand hand1 = frame.hands().leftmost();
 	        	Hand hand2 = frame.hands().rightmost();
-		        if(!hand1.equals(hand2)) {	
+		        if(!hand1.equals(hand2) && (hand1.isValid() && hand2.isValid())) {	
 		        	FingerList onHand1 = hand1.fingers().extended();
 		        	FingerList onHand2 = hand2.fingers().extended();
 		        	
 		        	for(int i = 0; i < 800; i++) {
-		        		if(i % 10 == 0)
-		        			System.out.println("Frame " + i + " hand1: " + onHand1.count() + "            " + "Frame " + i + " hand2: " + onHand2.count());
+		        		//if(i % 10 == 0)
+		        			//System.out.println("Frame " + i + " hand1: " + onHand1.count() + "            " + "Frame " + i + " hand2: " + onHand2.count());
 		        		player_1[i] = onHand1.count();
 		        		player_2[i] = onHand2.count();
 		        	}
@@ -40,7 +40,7 @@ public class ControllerListener extends Listener {
 		        		p1.setCurrentState(Model.mode(player_1));
 		        		p2.setCurrentState(Model.mode(player_2));
 		        		played = true;
-		        	}
+		        	
 		        	
 		        	State p1State = p1.getCurrentState();
 		        	State p2State = p2.getCurrentState();
@@ -48,10 +48,11 @@ public class ControllerListener extends Listener {
 		        	System.out.println("p1: " + p1State);
 		        	System.out.println("p2: " + p2State);
 		        	
-		        	Model.checkWinner(p1.getCurrentState(), p2.getCurrentState());
+		        	Model.checkWinner(p1State, p2State);
 		        	ifGameOver = true;
 		        	
 		        	System.out.println("Player " + Model.getEndValue() + " wins!!!!");
+		        	}
 		        }
 		        else
 		        	Model.setEndValue(-1);

@@ -31,8 +31,8 @@ public class ControllerListenerSingle extends Listener {
 		        	FingerList onHand1 = hand1.fingers().extended();
 		        	
 		        	for(int i = 0; i < 800; i++) {
-		        		if(i % 10 == 0)
-		        			System.out.println("Frame " + i + " hand1: " + onHand1.count() + "            " + "Frame " + i);
+		        		//if(i % 10 == 0)
+		        			//System.out.println("Frame " + i + " hand1: " + onHand1.count() + "            " + "Frame " + i);
 		        		player_1[i] = onHand1.count();
 		        	}
 		        	
