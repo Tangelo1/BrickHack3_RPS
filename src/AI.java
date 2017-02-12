@@ -1,10 +1,14 @@
+import java.util.ArrayList;
 
 public class AI {
 	private static int difficulty;
 	private State currentState;
+	private ArrayList<State> pStates, aiStates;
 	
 	public AI(int d) {
 		difficulty = d;
+		pStates = new ArrayList<State>();
+		aiStates = new ArrayList<State>();
 	}
 	
 	public State getCurrentState() {
@@ -34,10 +38,62 @@ public class AI {
 				break;
 				
 			case 2:
+				if(pStates.size() == 0) {
+					pStates.add(player.getCurrentState());
+					aiStates.add(State.PAPER);
+					return State.PAPER;
+				}
+				else if(pStates.size() < 10) {
+					if((pStates.get(pStates.size() - 1) == State.PAPER &&
+							aiStates.get(aiStates.size() - 1) == State.SCISSORS) ||
+							(pStates.get(pStates.size() - 1) == State.SCISSORS) && (aiStates.get(aiStates.size() - 1) == State.ROCK) ||
+							(pStates.get(pStates.size() - 1) == State.ROCK) && (aiStates.get(aiStates.size() - 1) == State.PAPER)) {
+				        if(pStates.get(pStates.size() - 1) == State.PAPER) { pStates.add(State.ROCK); aiStates.add(State.PAPER);
+				            return State.ROCK;}
+				        else if(pStates.get(pStates.size() - 1) == State.SCISSORS){ pStates.add(State.PAPER);aiStates.add(State.PAPER);
+				            return State.PAPER; }
+				        else { pStates.add(State.SCISSORS);aiStates.add(State.ROCK);
+				            return State.SCISSORS; }
+					}
+					else if((pStates.get(pStates.size() - 1) == State.PAPER && aiStates.get(aiStates.size() - 1) == State.ROCK)
+					        || (pStates.get(pStates.size() - 1) == State.SCISSORS && aiStates.get(aiStates.size() - 1) == State.PAPER)
+					        || (pStates.get(pStates.size() - 1) == State.ROCK && aiStates.get(aiStates.size() - 1) == State.SCISSORS)) {
+						pStates.add(aiStates.get(aiStates.size() - 1));aiStates.add(State.SCISSORS);
+						return aiStates.get(aiStates.size() - 1);
+					}
+				    else {
+				        if(pStates.get(pStates.size() - 1) == State.ROCK){ pStates.add(State.PAPER);aiStates.add(State.SCISSORS);
+				            return State.PAPER;}
+				        else if(pStates.get(pStates.size() - 1) == State.SCISSORS){ pStates.add(State.ROCK);aiStates.add(State.ROCK);
+				            return State.ROCK;}
+				        else{ pStates.add(State.PAPER);aiStates.add(State.SCISSORS);
+				            return State.SCISSORS; }
+				    }
+				}
+				else {
+					pStates.add(player.getCurrentState());
+					State mode;
+					int r = 0, p = 0, s = 0;
+					for(State st: pStates) {
+						if(st == State.ROCK) r++;
+						if(st == State.PAPER) p++;
+						if(st == State.SCISSORS) s++;
+					}
+					if(p >= r && p >= s) mode = State.PAPER;
+					else if(r >= p && r >= s) mode = State.ROCK;
+					else mode = State.ROCK;
+					
+					if(mode == State.ROCK)
+						return State.PAPER;
+					else if(mode == State.PAPER)
+						return State.SCISSORS;
+					else
+						return State.ROCK;
+					
+				}
 				
-				break;
-				
-			case 3:
+				//no break necessary
+		case 3:
 				State human = player.getCurrentState();
 				int rand1 = (int) (Math.random()*20);
 				if(rand1 >= 0 && rand1 <= 16){
