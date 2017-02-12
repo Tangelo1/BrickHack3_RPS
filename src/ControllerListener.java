@@ -45,13 +45,13 @@ public class ControllerListener extends Listener {
 		        	State p1State = p1.getCurrentState();
 		        	State p2State = p2.getCurrentState();
 		        	
-		        	System.out.println("p1: " + p1State);
-		        	System.out.println("p2: " + p2State);
+		        	//System.out.println("p1: " + p1State);
+		        	//System.out.println("p2: " + p2State);
 		        	
 		        	Model.checkWinner(p1State, p2State);
 		        	ifGameOver = true;
 		        	
-		        	System.out.println("Player " + Model.getEndValue() + " wins!!!!");
+		        	//1111System.out.println("Player " + Model.getEndValue() + " wins!!!!");
 		        	}
 		        }
 		        else

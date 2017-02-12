@@ -76,7 +76,7 @@ public class Difficulty extends BasicGameState
 			sbg.enterState(Game.MAIN_MENU);
 		}
 		
-		System.out.println("Difficulty: " + difficulty);
+		//System.out.println("Difficulty: " + difficulty);
 	}
 	
 	@Override
