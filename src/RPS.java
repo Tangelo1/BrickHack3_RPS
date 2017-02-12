@@ -25,7 +25,6 @@ public class RPS extends BasicGameState {
 	private Image p1Wins;
 	private Image p2Wins;
 	private Image pTie;	
-	//private ;
 	
 	public RPS(int game) {
 		// TODO Auto-generated constructor stub
@@ -57,10 +56,6 @@ public class RPS extends BasicGameState {
 		imgs[4] = new Image("res/Text5.png"); //SHOOT!
 	}
 
-	private void initController() {
-		
-		
-	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -118,6 +113,20 @@ public class RPS extends BasicGameState {
 				g.drawImage(pTie, 0, 780);
 			else
 				System.out.println("Neither player won, nor tied. It's something weird.");
+			
+			
+			if(time >= 8000) {
+				if(Model.getEndValue() != -1){
+					reset();
+					sbg.getState(Game.END).init(container, sbg);
+					sbg.enterState(Game.END);
+				}
+				else {
+					sbg.getState(Game.MAIN_MENU).init(container, sbg);
+					reset();
+					sbg.enterState(Game.MAIN_MENU);			
+				}
+			}
 		}
 
 		
@@ -127,20 +136,10 @@ public class RPS extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
 		time += delta;
 		
-		if(doThis && time > 4500){
+		if(doThis && time > 4501){
 			doThis = false;
 			doOnce();
-		}
-		//if(Model.getEndValue() != -1){
-			//sbg.getState(Game.END).init(container, sbg);
-			//sbg.enterState(Game.END);
-	//	}
-//		else {
-//			sbg.getState(Game.MAIN_MENU).init(container, sbg);
-//			reset();
-//			sbg.enterState(Game.MAIN_MENU);			
-//		}
-			
+		}		
 		
 	}
 	
@@ -148,17 +147,15 @@ public class RPS extends BasicGameState {
 		Controller controller = new Controller();
 		ControllerListener listener = new ControllerListener(p1, p2);
 		controller.addListener(listener);
-        //try {
-        //    System.in.read();
-        //} catch (IOException e) {
-        //    e.printStackTrace();
-        //}
 	}
 
 	public void reset(){
-		ControllerListener.reset();
-		p1 = new Player();
-		p2 = new Player();
+		//System.out.println("In reset");
+		ControllerListener.ifGameOver = false;
+		doThis = true;
+		time = 0;
+		p1 = null;
+		p2 = null;
 		
 		
 	}

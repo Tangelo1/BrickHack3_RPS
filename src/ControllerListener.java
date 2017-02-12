@@ -29,7 +29,8 @@ public class ControllerListener extends Listener {
 		        	FingerList onHand2 = hand2.fingers().extended();
 		        	
 		        	for(int i = 0; i < 600; i++) {
-		        		System.out.println("Frame " + i + " hand1: " + onHand1.count() + "            " + "Frame " + i + " hand2: " + onHand2.count());
+		        		if(i % 10 == 0)
+		        			System.out.println("Frame " + i + " hand1: " + onHand1.count() + "            " + "Frame " + i + " hand2: " + onHand2.count());
 		        		player_1[i] = onHand1.count();
 		        		player_2[i] = onHand2.count();
 		        	}
@@ -50,7 +51,9 @@ public class ControllerListener extends Listener {
 		        }
 		        else
 		        	Model.setEndValue(-1);
-		        controller.removeListener(this);
+		        
+		        if(ifGameOver)
+		        	controller.delete();
 	    	
 	    }
 	    
@@ -58,10 +61,4 @@ public class ControllerListener extends Listener {
 	    	System.out.println("Controller Disconnected");
 	    }
 	    
-	    public static void reset(){
-	    	p1 = new Player();
-	    	p2 = new Player();
-	    	
-	    	
-	    }
 	}

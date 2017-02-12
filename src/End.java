@@ -27,13 +27,13 @@ public class End extends BasicGameState
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g) throws SlickException
 	{
 		endBG.draw(0,0);
-		g.setColor(org.newdawn.slick.Color.red);
-		if(Model.getEndValue() == 0)
-			g.drawString("You tied!", 0, 0);
-		else if(Model.getEndValue() == -1)
-			g.drawString("Invalid Options...", 0, 0);
-		else
-			g.drawString("Player " + Model.getEndValue() + " wins!!", 0, 0);
+		//g.setColor(org.newdawn.slick.Color.red);
+		//if(Model.getEndValue() == 0)
+		//	g.drawString("You tied!", 0, 0);
+		//else if(Model.getEndValue() == -1)
+		//	g.drawString("Invalid Options...", 0, 0);
+		//else
+		//	g.drawString("Player " + Model.getEndValue() + " wins!!", 0, 0);
 		
 		exitButton.render(g);
 	}

@@ -11,6 +11,8 @@ public class Game extends StateBasedGame
 	public static final int MAIN_MENU = 0;
 	public static final int RPS = 1; 
 	public static final int END = 2;
+	public static final int DIFFICULTY = 3;
+	public static final int SINGLE = 4;
 
 	//hello world it's 2017
 	public Game(String name)
