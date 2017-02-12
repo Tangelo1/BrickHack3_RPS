@@ -111,7 +111,7 @@ public class RPS extends BasicGameState {
 				g.drawImage(p2Wins, 0, 780);
 			else if(Model.getEndValue() == 0)
 				g.drawImage(pTie, 0, 780);
-			else
+			//else
 				//System.out.println("Neither player won, nor tied. It's something weird.");
 			
 			
@@ -154,9 +154,9 @@ public class RPS extends BasicGameState {
 		ControllerListener.played = false;
 		ControllerListener.ifGameOver = false;
 		doThis = true;
-		//time = 0;
-		//p1 = null;
-		//p2 = null;
+		time = 0;
+		p1 = null;
+		p2 = null;
 		
 		
 	}

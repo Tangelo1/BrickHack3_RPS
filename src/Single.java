@@ -111,7 +111,7 @@ public class Single extends BasicGameState {
 				g.drawImage(p2Wins, 0, 780);
 			else if(Model.getEndValue() == 0)
 				g.drawImage(pTie, 0, 780);
-			else
+			//else
 				//System.out.println("Neither player won, nor tied. It's something weird.");
 			
 			
