@@ -136,7 +136,7 @@ public class Single extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
 		time += delta;
 		
-		if(doThis && time > 4300){
+		if(doThis && time > 4500){
 			doThis = false;
 			doOnce();
 		}		

@@ -24,13 +24,13 @@ public class ControllerListenerSingle extends Listener {
 	    }
 	    public void onFrame(Controller controller) {    
 	        Frame frame = controller.frame();
-	        int[] player_1 = new int[600];
+	        int[] player_1 = new int[800];
 	        
 	        	Hand hand1 = frame.hands().leftmost();
 		        if(hand1.isValid()) {	
 		        	FingerList onHand1 = hand1.fingers().extended();
 		        	
-		        	for(int i = 0; i < 600; i++) {
+		        	for(int i = 0; i < 800; i++) {
 		        		if(i % 10 == 0)
 		        			System.out.println("Frame " + i + " hand1: " + onHand1.count() + "            " + "Frame " + i);
 		        		player_1[i] = onHand1.count();
