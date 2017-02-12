@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -25,6 +26,7 @@ public class Single extends BasicGameState {
 	private Image p1Wins;
 	private Image p2Wins;
 	private Image pTie;	
+
 	
 	public Single(int game) {
 		// TODO Auto-generated constructor stub
@@ -120,8 +122,8 @@ public class Single extends BasicGameState {
 					sbg.enterState(Game.END);
 				}
 				else {
-					sbg.getState(Game.MAIN_MENU).init(container, sbg);
 					reset();
+					sbg.getState(Game.MAIN_MENU).init(container, sbg);
 					sbg.enterState(Game.MAIN_MENU);			
 				}
 			}

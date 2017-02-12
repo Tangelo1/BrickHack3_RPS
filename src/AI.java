@@ -3,12 +3,11 @@ import java.util.ArrayList;
 public class AI {
 	private static int difficulty;
 	private State currentState;
-	private ArrayList<State> pStates, aiStates;
+	private static ArrayList<State> pStates = new ArrayList<State>();
+	private static ArrayList<State> aiStates = new ArrayList<State>();
 	
 	public AI(int d) {
 		difficulty = d;
-		pStates = new ArrayList<State>();
-		aiStates = new ArrayList<State>();
 	}
 	
 	public State getCurrentState() {
@@ -38,6 +37,7 @@ public class AI {
 				break;
 				
 			case 2:
+				
 				if(pStates.size() == 0) {
 					pStates.add(player.getCurrentState());
 					aiStates.add(State.PAPER);
@@ -93,6 +93,7 @@ public class AI {
 				}
 				
 				//no break necessary
+			
 		case 3:
 				State human = player.getCurrentState();
 				int rand1 = (int) (Math.random()*20);
