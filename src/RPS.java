@@ -16,6 +16,12 @@ public class RPS extends BasicGameState {
 	private boolean doThis = true;
 	private int time;
 	private Image[] imgs;
+	private Image p1R;
+	private Image p1P;
+	private Image p1S;
+	private Image p2R;
+	private Image p2P;
+	private Image p2S;
 	
 	public RPS(int game) {
 		// TODO Auto-generated constructor stub
@@ -25,6 +31,15 @@ public class RPS extends BasicGameState {
 		p1 = new Player();
 		p2 = new Player();
 		imgs = new Image[5];
+		
+		p1R = new Image("res/Rock.png");
+		p1P = new Image("res/Paper.png");
+		p1S = new Image("res/Scissors.png");
+		
+		p2R = new Image("res/RockR.png");
+		p2P = new Image("res/PaperR.png");
+		p2S = new Image("res/ScissorsR.png");
+		
 		
 		background = new Image("res/BG.png");
 		imgs[0] = new Image("res/Text1.png"); //ROCK
@@ -49,6 +64,40 @@ public class RPS extends BasicGameState {
 			g.drawImage(imgs[3], 0, 0);
 		if(time >= 5000)
 			g.drawImage(imgs[4], 0, 0);
+		
+		
+		//RANDOMIZE IMAGES?
+		
+		if(ControllerListener.ifGameOver) {
+			State p1State = p1.getCurrentState();
+			State p2State = p2.getCurrentState();
+			switch (p1State) {
+			case ROCK:
+				g.drawImage(p1R, 150, 210);
+				break;
+			case PAPER:
+				g.drawImage(p1P, 150, 210);
+				break;
+			case SCISSORS:
+				g.drawImage(p1S, 150, 210);
+				break;
+			default:
+				break;
+			}
+			switch (p2State) {
+			case ROCK:
+				g.drawImage(p2R, 1920-150-660, 210);
+				break;
+			case PAPER:
+				g.drawImage(p2P, 1920-150-660, 210);
+				break;
+			case SCISSORS:
+				g.drawImage(p2S, 1920-150-660, 210);
+				break;
+			default:
+				break;
+			}
+		}
 
 		
 	}
@@ -56,7 +105,6 @@ public class RPS extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
 		time += delta;
-		System.out.println();
 		
 		if(doThis && time > 5000){
 			doThis = false;
@@ -79,11 +127,11 @@ public class RPS extends BasicGameState {
 		Controller controller = new Controller();
 		ControllerListener listener = new ControllerListener(p1, p2);
 		controller.addListener(listener);
-//        try {
-//            System.in.read();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        //try {
+        //    System.in.read();
+        //} catch (IOException e) {
+        //    e.printStackTrace();
+        //}
 	}
 
 	public void reset(){

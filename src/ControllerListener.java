@@ -4,6 +4,8 @@ public class ControllerListener extends Listener {
 		private static Player p1;
 		private static Player p2;
 		
+		public static boolean ifGameOver = false;
+		
 		public ControllerListener(Player p1, Player p2) {
 			this.p1 = p1;
 			this.p2 = p2;
@@ -33,9 +35,15 @@ public class ControllerListener extends Listener {
 		        	
 		        	p1.setCurrentState(Model.mode(player_1));
 		        	p2.setCurrentState(Model.mode(player_2));
-		        	System.out.println("p1: " + p1.getCurrentState());
-		        	System.out.println("p2: " + p2.getCurrentState());
+		        	
+		        	State p1State = p1.getCurrentState();
+		        	State p2State = p2.getCurrentState();
+		        	
+		        	System.out.println("p1: " + p1State);
+		        	System.out.println("p2: " + p2State);
+		        	
 		        	Model.checkWinner(p1.getCurrentState(), p2.getCurrentState());
+		        	ifGameOver = true;
 		        	
 		        	System.out.println("Player " + Model.getEndValue() + " wins!!!!");
 		        }
