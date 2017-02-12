@@ -21,6 +21,8 @@ public class Game extends StateBasedGame
 		addState(new MainMenu(MAIN_MENU));
 		addState(new RPS(RPS));
 		addState(new End(END));
+		addState(new Difficulty(DIFFICULTY));
+		addState(new Single(SINGLE));
 	}
 
 	public void initStatesList(GameContainer gc) throws SlickException {}

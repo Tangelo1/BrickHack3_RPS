@@ -49,6 +49,12 @@ public class MainMenu extends BasicGameState
 		
 		if(SPButton.isClicked(input))
 		{
+			sbg.getState(Game.DIFFICULTY).init(container, sbg);
+			sbg.enterState(Game.DIFFICULTY);
+			
+		}
+		if(MPButton.isClicked(input))
+		{
 			sbg.getState(Game.RPS).init(container, sbg);
 			sbg.enterState(Game.RPS);
 		}

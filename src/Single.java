@@ -9,9 +9,9 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import com.leapmotion.leap.Controller;
 
-public class RPS extends BasicGameState {
+public class Single extends BasicGameState {
 	private Player p1;
-	private Player p2;
+	private AI p2;
 	Image background, text1, text2, text3, text4, text5;
 	private boolean doThis = true;
 	private int time;
@@ -26,14 +26,14 @@ public class RPS extends BasicGameState {
 	private Image p2Wins;
 	private Image pTie;	
 	
-	public RPS(int game) {
+	public Single(int game) {
 		// TODO Auto-generated constructor stub
 	}
 	public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
 		
 		time = 0;
 		p1 = new Player();
-		p2 = new Player();
+		p2 = new AI(Difficulty.difficulty);
 		imgs = new Image[5];
 		
 		p1R = new Image("res/Rock.png");
@@ -72,10 +72,8 @@ public class RPS extends BasicGameState {
 		if(time >= 4000)
 			g.drawImage(imgs[4], 0, 0);
 		
-		// CATCH NO HANDS
-		//RANDOMIZE IMAGES?
 		
-		if(ControllerListener.ifGameOver) {
+		if(ControllerListenerSingle.ifGameOver) {
 			State p1State = p1.getCurrentState();
 			State p2State = p2.getCurrentState();
 			switch (p1State) {
@@ -145,14 +143,14 @@ public class RPS extends BasicGameState {
 	
 	public void doOnce() {
 		Controller controller = new Controller();
-		ControllerListener listener = new ControllerListener(p1, p2);
+		ControllerListenerSingle listener = new ControllerListenerSingle(p1, p2);
 		controller.addListener(listener);
 	}
 
 	public void reset(){
-		//System.out.println("In reset");
-		ControllerListener.played = false;
-		ControllerListener.ifGameOver = false;
+		Difficulty.difficulty = 0;
+		ControllerListenerSingle.ifGameOver = false;
+		ControllerListenerSingle.played = false;
 		doThis = true;
 		time = 0;
 		p1 = null;
@@ -162,7 +160,7 @@ public class RPS extends BasicGameState {
 	}
 
 	public int getID() {
-		return 1;
+		return 4;
 	}
 
 
