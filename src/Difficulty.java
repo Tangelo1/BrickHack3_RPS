@@ -16,6 +16,7 @@ public class Difficulty extends BasicGameState
 	Button easy;
 	Button medium;
 	Button hard;
+	Button back;
 	
 	Image selectText;
 	Image bg;
@@ -30,6 +31,8 @@ public class Difficulty extends BasicGameState
 		medium = new Button("res/MediumMode.png", 960-330, 560, 660, 220);
 		hard = new Button("res/HardMode.png", 960-330, 820, 660, 220);
 		
+		back = new Button("res/RetMainMenu.png", 20, 820, 660, 220);
+		
 		
 	}
 
@@ -41,6 +44,8 @@ public class Difficulty extends BasicGameState
 		easy.render(g);
 		medium.render(g);
 		hard.render(g);
+		
+		back.render(g);
 		
 	}
 
@@ -66,6 +71,9 @@ public class Difficulty extends BasicGameState
 			difficulty = 3;
 			sbg.getState(Game.SINGLE).init(container, sbg);
 			sbg.enterState(Game.SINGLE);
+		}
+		if(back.isClicked(input)) {
+			sbg.enterState(Game.MAIN_MENU);
 		}
 		
 		System.out.println("Difficulty: " + difficulty);
