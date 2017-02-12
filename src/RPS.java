@@ -22,11 +22,16 @@ public class RPS extends BasicGameState {
 	private Image p2R;
 	private Image p2P;
 	private Image p2S;
+	private Image p1Wins;
+	private Image p2Wins;
+	private Image pTie;	
+	//private ;
 	
 	public RPS(int game) {
 		// TODO Auto-generated constructor stub
 	}
 	public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
+		
 		time = 0;
 		p1 = new Player();
 		p2 = new Player();
@@ -40,6 +45,9 @@ public class RPS extends BasicGameState {
 		p2P = new Image("res/PaperR.png");
 		p2S = new Image("res/ScissorsR.png");
 		
+		p1Wins = new Image("res/PN1Win.png");
+		p2Wins = new Image("res/PN2Win.png");
+		pTie = new Image("res/Tie.png");
 		
 		background = new Image("res/BG.png");
 		imgs[0] = new Image("res/Text1.png"); //ROCK
@@ -47,25 +55,29 @@ public class RPS extends BasicGameState {
 		imgs[2] = new Image("res/Text3.png"); //SCISSORS
 		imgs[3] = new Image("res/Text4.png"); //SAYS
 		imgs[4] = new Image("res/Text5.png"); //SHOOT!
-		
 	}
 
+	private void initController() {
+		
+		
+	}
+	
 	@Override
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawImage(background, 0, 0);
 		
-		if(time >= 1000 && time < 2000)
+		if(time >= 1000 && time < 1750)
 			g.drawImage(imgs[0], 0, 0);
-		if(time >= 2000 && time < 3000)
+		if(time >= 1750 && time < 2500)
 			g.drawImage(imgs[1], 0, 0);
-		if(time >= 3000 && time < 4000)
+		if(time >= 2500 && time < 3250)
 			g.drawImage(imgs[2], 0, 0);
-		if(time >= 4000 && time < 5000)
+		if(time >= 3250 && time < 4000)
 			g.drawImage(imgs[3], 0, 0);
-		if(time >= 5000)
+		if(time >= 4000)
 			g.drawImage(imgs[4], 0, 0);
 		
-		
+		// CATCH NO HANDS
 		//RANDOMIZE IMAGES?
 		
 		if(ControllerListener.ifGameOver) {
@@ -97,6 +109,15 @@ public class RPS extends BasicGameState {
 			default:
 				break;
 			}
+			
+			if(Model.getEndValue() == 1) 
+				g.drawImage(p1Wins, 0, 780);
+			else if(Model.getEndValue() == 2)
+				g.drawImage(p2Wins, 0, 780);
+			else if(Model.getEndValue() == 0)
+				g.drawImage(pTie, 0, 780);
+			else
+				System.out.println("Neither player won, nor tied. It's something weird.");
 		}
 
 		
@@ -106,7 +127,7 @@ public class RPS extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
 		time += delta;
 		
-		if(doThis && time > 5000){
+		if(doThis && time > 4500){
 			doThis = false;
 			doOnce();
 		}
@@ -123,7 +144,7 @@ public class RPS extends BasicGameState {
 		
 	}
 	
-	public void doOnce(){
+	public void doOnce() {
 		Controller controller = new Controller();
 		ControllerListener listener = new ControllerListener(p1, p2);
 		controller.addListener(listener);

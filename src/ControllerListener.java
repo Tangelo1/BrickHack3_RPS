@@ -17,7 +17,7 @@ public class ControllerListener extends Listener {
 	    public void onConnect(Controller controller) {
 	        System.out.println("Controller Connected");
 	    }
-	    public void onFrame(Controller controller) {
+	    public void onFrame(Controller controller) {    	
 	        Frame frame = controller.frame();
 	        int[] player_1 = new int[600];
 	        int[] player_2 = new int[600];
@@ -27,6 +27,7 @@ public class ControllerListener extends Listener {
 		        if(!hand1.equals(hand2)) {	
 		        	FingerList onHand1 = hand1.fingers().extended();
 		        	FingerList onHand2 = hand2.fingers().extended();
+		        	
 		        	for(int i = 0; i < 600; i++) {
 		        		System.out.println("Frame " + i + " hand1: " + onHand1.count() + "            " + "Frame " + i + " hand2: " + onHand2.count());
 		        		player_1[i] = onHand1.count();
@@ -50,6 +51,7 @@ public class ControllerListener extends Listener {
 		        else
 		        	Model.setEndValue(-1);
 		        controller.removeListener(this);
+	    	
 	    }
 	    
 	    public void onDisconnect(Controller controller) {
